@@ -1,0 +1,44 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www;
+
+	server_name _;
+	access_log  /var/log/nginx/localhost.access.log;
+
+	location / {
+		index  index.php;
+	}
+
+	# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+	#
+	location ~ \.php$ {
+		try_files $uri =404;
+	#	include snippets/fastcgi-php.conf;
+	#
+	#	# With php5-cgi alone:
+		fastcgi_pass 127.0.0.1:9000;
+	#	# With php5-fpm:
+	#	fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_index  index.php;
+		fastcgi_param  SCRIPT_FILENAME  /var/www$fastcgi_script_name;
+		include         fastcgi_params;
+	}
+
+	# deny access to .htaccess files, if Apache's document root
+	# concurs with nginx's one
+	#
+	location = /db.php {
+		deny all;
+	}
+	location = /startFollowers.php {
+		deny all;
+	}
+	location = /functions.php {
+		deny all;
+	}
+	location = /preload.php {
+		deny all;
+	}
+}
