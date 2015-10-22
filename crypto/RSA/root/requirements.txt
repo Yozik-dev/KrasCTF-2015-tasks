@@ -1,0 +1,4 @@
+Flask==0.10
+gunicorn==19.3.0
+flask-login==0.2.11
+Flask-SQLAlchemy==0.16

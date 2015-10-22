@@ -1,0 +1,9 @@
+
+<div class="alert {{ alert }}" role="alert">
+	{% if alert=="alert-danger" %}
+		Пропуск поддельный! Расстрелять!
+	{% endif %}
+	{% if alert!="alert-danger" %}
+		FLAG: 
+	{% endif %}
+</div>

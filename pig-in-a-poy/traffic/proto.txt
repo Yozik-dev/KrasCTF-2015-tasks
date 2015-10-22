@@ -1,0 +1,20 @@
+Server: "Stay on your place! What's your name?"
+
+Client: "John Smith"
+
+Server: "Okay, John, solve the simple task: X + Y = ?"
+
+Client: "X+Y"
+
+Server: "We almost here... Now tell me the keyword"
+
+Client: "USSR IS SO GULAG"
+
+Server: "Correct, you can pass! The key is <flag>"
+
+
+
+On error:
+"Get out of here, KGB's dog!"
+
+Time limit: 1 second

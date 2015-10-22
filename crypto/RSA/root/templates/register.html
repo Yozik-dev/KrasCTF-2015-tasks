@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="row">
+      <div class="alert alert-info" role="alert">{{ message }}</div>
+    </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+
+      <h2>Регистрация</h2>
+      <form name="register" action="/register" method="POST">
+        <div class="control-group">
+          <!-- E-mail -->
+          <label class="control-label" for="username">Username</label>
+          <div class="controls">
+            <input type="text" name="username" placeholder="Username"  class="form-control">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Password -->
+          <label class="control-label" for="password">Password</label>
+          <div class="controls">
+            <input type="text" name="password" placeholder="Password"  class="form-control">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-default">Register</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

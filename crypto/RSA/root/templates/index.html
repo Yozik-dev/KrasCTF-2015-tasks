@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+
+      <h1>Black market</h1>
+      <p>Здесь вы можете купить все что угодно! Даже мифический заграничный паспорт, который поможет выехать за границу!</p>
+      
+  {% if not g.user.is_authenticated()%}
+    <p><a class="btn btn-primary btn-lg" href="/register" role="button">Sign up &raquo;</a></p>
+  {% endif %}
+
+  {% if g.user.is_authenticated()%}
+    <p><a class="btn btn-primary btn-lg" href="/market" role="button">Market &raquo;</a></p>
+    <p><a class="btn btn-primary btn-lg" href="/boundary" role="button">Boundary service &raquo;</a></p>
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="panel panel-default">
+
+      <div class="panel-heading">Товары</div>
+
+      <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Стоимость</th>
+                <th>Наименование</th>
+                <th>Купить</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>
+                        <div class=flash>{{ item.id }}</div>
+                    </td>
+                    <td>
+                        <div class=flash>{{ item.cost }}</div>
+                    </td>
+                    <td>
+                        <div class=flash>{{ item.title }}</div>
+                    </td>
+                    <td>
+                        <div class=flash><a href="/buy/{{ item.id }}">Купить {{ item.title }}</a></div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      <nav>
+        <ul class="pagination pagination-lg">
+            <li><a aria-label="Previous" href="/market/{{ page-1 }}"><span aria-hidden="true">«</span></a></li>
+            <li><a href="/market/{{ page }}">{{ page }}</a></li>
+            <li><a aria-label="Next" href="/market/{{ page+1 }}"><span aria-hidden="true">»</span></a></li>
+        </ul>
+      </nav>
+    </div>
+    
+{% endblock %}

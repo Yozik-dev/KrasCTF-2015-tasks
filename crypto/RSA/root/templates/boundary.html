@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block body %}
+	<div class="row" id="boundary_answer">
+      
+    </div>
+	<div class="row">
+	    <div class="col-md-4 col-md-offset-4">
+	    	<form name="boundary" action="/boundary" method="POST">
+				<div class="control-group">
+				  <!-- E-mail -->
+				  <label class="control-label" for="licence">Товарищ! Показывай свой пропуск!</label>
+				  <div class="controls">
+				    <input type="text" id="licenceb64" placeholder="sign_token value"  class="form-control">
+				  </div>
+				</div>
+				<button type="button" onclick="check()" class="btn btn-default">Register</button>
+			</form>
+	    </div>
+	</div>
+
+	<script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='js/jsencrypt.js') }}"></script>
+
+	<script type="text/javascript">
+		function check() {
+			licence = document.getElementById("licenceb64").value;
+			$.post("/boundary", {sign_token: licence}).done(function(data) {
+				$("#boundary_answer").html(data['answer']);
+			});
+		}
+	</script>
+
+{% endblock %}
+

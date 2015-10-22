@@ -1,0 +1,63 @@
+<!doctype html>
+<title>Boundary</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jumbotron.css') }}">
+
+<script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Boundary</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        {% if not g.user.is_authenticated()%}
+          <form class="navbar-form navbar-right" action="/login" method="POST">
+            <div class="form-group">
+              <input type="text" name="username" placeholder="Login" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        {% endif %}
+        {% if g.user.is_authenticated()%}
+          <div class="navbar-text">
+            Ваши деньги: {{ g.user.cash }} рублей
+          </div>
+          <div class="navbar-form navbar-right">
+            <a href="/logout">
+              <button type="button" class="btn btn-success">Logout</button>
+            </a>
+          </div>
+        {% endif %}
+      </div><!--/.navbar-collapse -->
+    </div>
+  </nav>
+
+  <div class="jumbotron">
+    <div class="container">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="row">
+              <div class="alert alert-info" role="alert">{{ message }}</div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% block body %}{% endblock %}
+    </div>
+  </div>
+
+</body>
