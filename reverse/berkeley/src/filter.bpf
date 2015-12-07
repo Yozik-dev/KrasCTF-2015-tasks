@@ -1,0 +1,48 @@
+ldh  [12]
+jne  #0x800, drop
+ldb  [23]
+jne  #0x11, drop
+ld   [26]
+jne  #0xc0a80001, drop
+ldh  [20]
+ldxb 4*([14]&0xf)
+ldh  [x + 16]
+jne  #0x87f7, drop
+ldh  [x + 14]
+jne  #0x43c8, drop
+ldh  [x + 18]
+jne  #0x28, drop
+ld   [x + 22]
+add  #0x15248511
+sub  #0x7657e746
+jne  #0, drop
+ld   [x + 26]
+add  #0x12756448
+sub  #0x73ae9580
+jne  #0, drop
+ld   [x + 30]
+add  #0x43885712
+sub  #0x77eabb47
+jne  #0, drop
+ld   [x + 34]
+add  #0x97116482
+sub  #0xd047cab5
+jne  #0, drop
+ld   [x + 38]
+add  #0x71558943
+sub  #0xa288bea9
+jne  #0, drop
+ld   [x + 42]
+add  #0x21448653
+sub  #0x577dea88
+jne  #0, drop
+ld   [x + 46]
+add  #0x00231920
+sub  #0x34565282
+jne  #0, drop
+ld   [x + 50]
+add  #0x71349586
+sub  #0xa166cab7
+jne  #0, drop
+ret  #65535
+drop: ret #0
